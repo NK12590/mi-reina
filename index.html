@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cita Virtual Contigo 💖</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fffafc;
+      color: #333;
+      text-align: center;
+      padding: 30px;
+    }
+    h1 {
+      color: #e91e63;
+    }
+    .section {
+      margin: 40px 0;
+    }
+    .options {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .option {
+      border: 2px solid #e91e63;
+      border-radius: 12px;
+      padding: 20px;
+      width: 200px;
+      cursor: pointer;
+      background-color: #fff0f5;
+      transition: transform 0.2s;
+    }
+    .option:hover {
+      transform: scale(1.05);
+      background-color: #ffe4ec;
+    }
+    .selected {
+      background-color: #f8bbd0 !important;
+      border-color: #ad1457;
+    }
+    .message {
+      margin-top: 30px;
+      font-weight: bold;
+      font-size: 1.2em;
+      color: #4a148c;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hey tú, sí, tú, la chica más guapa del planeta! ¿Aceptarías una cita virtual conmigo?</h1>
+
+  <div class="section">
+    <h2>🎬 Si no me ha rechazado, escoja la peli/serie</h2>
+    <div class="options" id="movies">
+      <div class="option">Barbie (live action)</div>
+      <div class="option">Demon Slayer (prometo una explicación)</div>
+      <div class="option">La Era del Hielo</div>
+      <div class="option">Harry Potter</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🍽️ Elige tu desayuno</h2>
+    <div class="options" id="breakfasts">
+      <div class="option">Waffle + Bebida</div>
+      <div class="option">Mini hot cakes + Smoothie</div>
+      <div class="option">Crepé + Smoothie</div>
+      <div class="option">Croissant + Jugo + Yogur + Frutitas</div>
+    </div>
+  </div>
+
+  <div class="message" id="message">Sé que es un detalle pequeñito, pero quisiera dártelo y que sepas que en persona será más ❤️</div>
+
+  <script>
+    const handleSelection = (sectionId) => {
+      const options = document.querySelectorAll(`#${sectionId} .option`);
+      options.forEach(option => {
+        option.addEventListener('click', () => {
+          options.forEach(o => o.classList.remove('selected'));
+          option.classList.add('selected');
+          updateMessage();
+        });
+      });
+    };
+
+    const updateMessage = () => {
+      const selectedMovie = document.querySelector('#movies .selected');
+      const selectedBreakfast = document.querySelector('#breakfasts .selected');
+      const message = document.getElementById('message');
+      if (selectedMovie && selectedBreakfast) {
+        message.innerHTML = `🎉 ¡Perfecto! Hoy vemos <strong>${selectedMovie.innerText}</strong> y te llegará <strong>${selectedBreakfast.innerText}</strong>. 😍<br><br>Gracias por aceptar, y por hacerme tan feliz ❤️`;
+      }
+    };
+
+    handleSelection('movies');
+    handleSelection('breakfasts');
+  </script>
+</body>
+</html>
